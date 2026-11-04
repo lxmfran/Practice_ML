@@ -54,9 +54,9 @@ at the defence is not *whether* AI was used, but whether you understand what was
 | Field | Entry |
 |---|---|
 | Tool or service | Claude |
-| Purpose | Understanding the assignment and its methods (grouped folds, KNN, scaling, macro F1, ROC/AUC, Brier and the threshold rule); code suggestions for my sections; draft interpretations that I adapted; checking results and interpretations against outputs; help with Git/GitHub (repository structure, branches, commits and pull requests); and notebook templates shared with the team. |
+| Purpose | Understanding the assignment and its methods (grouped folds, KNN, scaling, macro F1, ROC/AUC, Brier and the threshold rule), writing the code of my sections, drafting the interpretations, checking the results and interpretations against the outputs, help with Git/GitHub (repository structure, branches, commits and pull requests) and notebook templates shared with the team. |
 | Files / sections affected | `notebooks/R2_cyber.ipynb` (P2.4 cyber, P2.5, P2.6 cyber dry run), the cyber dry-run CSV files, the repo structure and README, and the draft templates for the team notebooks |
-| How the output was checked | I ran the whole notebook from beginning to end on the canonical folds, checked every number in the interpretations against the printed outputs, and passed the dry run through `validate_submission.py` (`valid`). I reviewed the code cell by cell, rewriting and commenting it myself so that I can explain every step at the defence. |
+| How the output was checked | I ran the whole notebook from beginning to end on the canonical folds, compared the results with the interpretations and passed the dry run through `validate_submission.py` (`valid`). I went through the code and the interpretations cell by cell, commenting the code myself so that I can explain every step at the defence. |
 
 ### R3 - Regression
 

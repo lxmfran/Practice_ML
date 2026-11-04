@@ -1,0 +1,5 @@
+# Course-owned canonical fold sidecars - published identities
+# Evaluation metadata only.  fold_id is NEVER an estimator input.
+
+cyber_folds.csv         314367 B  sha256 f19eea8e600d2a4fe46eca4f4de7505e6810102adff9b64c78359af7c6b0bee2
+storage_folds.csv       109725 B  sha256 ad5853f01b7c67c667af107c9c63b156b002a577705a228138e627137ef17c51

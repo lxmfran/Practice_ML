@@ -2,3 +2,4 @@
 # never convert line endings in these files.
 datos/** -text
 esquemas/*.csv -text
+folds/** -text
