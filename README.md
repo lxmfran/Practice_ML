@@ -16,25 +16,19 @@ Commands described as running from `Proyecto/` must run from the repository root
 | `herramientas/` | Course submission-format validator | Read-only reference |
 | `final_test/` | Course README; final-test features are released only after the P5 model lock | No P2 notebook reads or checks final-test files |
 | `plantillas/` | Existing course document files, completed in place for this team | Feature register, AI disclosure, roles and protocol memo |
-| `notebooks/R1_data.ipynb`, `R2_cyber.ipynb`, `R3_storage.ipynb`, `R4_evaluacion.ipynb` | Source notebooks for the four role contributions | Team source material |
-| `notebooks/P2_cyber.ipynb`, `notebooks/P2_storage.ipynb` | Integrated P2 notebooks, one per challenge | R5 integration and team review |
+| `folds/` | Course canonical fold files, read by the Practice 3 notebooks | Read-only reference |
+| `notebooks/` | Notebooks of the current practice | Each role, its own notebook; R5 the final ones |
+| `entrega_p2/` | Files handed in for Practice 2 | Archive, do not change |
 | `entregas_prueba/` | Development-only dry-run predictions and corresponding feature subsets | R2 and R3; integration checked by R5 |
 | Repository root | Cumulative `comparativa.csv`; the document files remain in `plantillas/` | R4 owns the comparison table; R5 checks delivery completeness |
 
-## Source and final notebooks
+## Practice 3 notebooks
 
-Use `notebooks/R1_data.ipynb` as the complete R1 source. The team moved and renamed
-the source notebooks; there is no longer a separate `borradores/` directory.
+Each role works in its own notebook inside `notebooks/`, so data paths start with `../datos` and fold paths with `../folds`.
+R5 joins them into `notebooks/p3_cyber.ipynb` and `notebooks/p3_storage.ipynb`, the files that are handed in.
+Check a notebook with `python revisor_notebook.py notebooks/my_notebook.ipynb`. It only reports and never changes the notebook.
 
-The final P2 notebooks combine the following team contributions:
-
-- Cyber: R1 data checks and preprocessing, R4 protocol and evaluation, R2 classification and probability analysis, and the P2.6 explanations and dry run.
-- Storage: R1 data checks and preprocessing, R4 protocol and evaluation, R3 target-representation analysis and regression, and the P2.6 explanations and dry run.
-
-Run these notebooks with `notebooks/` as the working directory. Their relative data
-paths start with `../datos`, and their document paths with `../plantillas`. The final
-notebooks run independently from beginning to end. Interpretations belong in Markdown
-cells; copied cells include source notebook and cell identifiers in their metadata.
+The Practice 2 role drafts are no longer in `main`; they remain in the Git history (commit `69bd821`).
 
 Coordinate substantive model or interpretation changes with the relevant role. Integration
 may adjust paths and separate mixed-challenge cells while preserving the model configurations.
