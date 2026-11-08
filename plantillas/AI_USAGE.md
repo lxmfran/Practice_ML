@@ -49,7 +49,7 @@ at the defence is not *whether* AI was used, but whether you understand what was
 
 ### R2 - Classification
 
-**Member:** Francisco Moya
+**Member:** Francisco Manuel Moya Sánchez
 
 | Field | Entry |
 |---|---|
@@ -99,12 +99,16 @@ at the defence is not *whether* AI was used, but whether you understand what was
 
 ## Practice 3
 
+### R3 - Regression
+
+**Member:** Francisco Manuel Moya Sánchez
+
 | Field | Entry |
 |---|---|
-| Tool or service | |
-| Purpose | |
-| Files / sections affected | |
-| How the output was checked | |
+| Tool or service | Claude |
+| Purpose | Understanding the assignment and its methods (linear regression on z = log10(latency), reference levels, Ridge and Lasso, rank and condition number, paired per-fold differences), writing the code of my sections, drafting the interpretations and the answers to the six comparison questions, checking that every number in the text comes from a printed output, integrating R1's and R4's shared cells into my notebook, and help with Git/GitHub. |
+| Files / sections affected | `notebooks/R3_p3_storage.ipynb` (P3.3, P3.4 and the Challenge B part of P3.5) |
+| How the output was checked | I ran the whole notebook from beginning to end on the canonical folds and checked that the results did not change after each integration (R1's preprocessing, R4's fold cells). I passed it through `revisor_notebook.py` (0 errors) and went through the code and the interpretations cell by cell, commenting the code myself so that I can explain every step at the defence. |
 
 ## Practice 4
 
