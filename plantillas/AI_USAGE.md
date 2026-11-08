@@ -106,7 +106,7 @@ at the defence is not *whether* AI was used, but whether you understand what was
 | Field | Entry |
 |---|---|
 | Tool or service | Claude |
-| Purpose | Understanding the assignment and its methods (linear regression on z = log10(latency), reference levels, Ridge and Lasso, rank and condition number, paired per-fold differences), writing the code of my sections, drafting the interpretations and the answers to the six comparison questions, checking that every number in the text comes from a printed output, integrating R1's and R4's shared cells into my notebook, and help with Git/GitHub. |
+| Purpose | Used as an assistant: explaining the assignment and its methods (linear regression on z = log10(latency), reference levels, Ridge and Lasso, rank and condition number, paired per-fold differences) and what each question asked; coding assistance for my sections (suggested code that I reviewed, commented and asked to simplify); help drafting the interpretations and the answers to the comparison questions, which I reviewed and edited; help integrating R1's and R4's shared cells; and help with Git/GitHub. |
 | Files / sections affected | `notebooks/R3_p3_storage.ipynb` (P3.3, P3.4 and the Challenge B part of P3.5) |
 | How the output was checked | I ran the whole notebook from beginning to end on the canonical folds and checked that the results did not change after each integration (R1's preprocessing, R4's fold cells). I passed it through `revisor_notebook.py` (0 errors) and went through the code and the interpretations cell by cell, commenting the code myself so that I can explain every step at the defence. |
 
