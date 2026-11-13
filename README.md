@@ -1,7 +1,7 @@
 # Practice II - Machine Learning (P2-P5)
 
 Team repository for the cumulative Machine Learning project, Practices 2 to 5.
-The internal role guide is available in [`docs/Guia_Roles_P2.pdf`](docs/Guia_Roles_P2.pdf).
+The internal role guides are in `docs/`; the current one is [`docs/Guia_Roles_P4.pdf`](docs/Guia_Roles_P4.pdf).
 The course assignment remains the authoritative specification.
 
 ## Repository structure
@@ -16,19 +16,20 @@ Commands described as running from `Proyecto/` must run from the repository root
 | `herramientas/` | Course submission-format validator | Read-only reference |
 | `final_test/` | Course README; final-test features are released only after the P5 model lock | No P2 notebook reads or checks final-test files |
 | `plantillas/` | Existing course document files, completed in place for this team | Feature register, AI disclosure, roles and protocol memo |
-| `folds/` | Course canonical fold files, read by the Practice 3 notebooks | Read-only reference |
+| `folds/` | Course canonical fold files, read by the Practice 3 and Practice 4 notebooks | Read-only reference |
 | `notebooks/` | Notebooks of the current practice | Each role, its own notebook; R5 the final ones |
 | `entrega_p2/` | Files handed in for Practice 2 | Archive, do not change |
+| `entrega_p3/` | Files handed in for Practice 3, and the role notebooks in `entrega_p3/notebooks_individuales/` | Archive, do not change |
 | `entregas_prueba/` | Development-only dry-run predictions and corresponding feature subsets | R2 and R3; integration checked by R5 |
 | Repository root | Cumulative `comparativa.csv`; the document files remain in `plantillas/` | R4 owns the comparison table; R5 checks delivery completeness |
 
-## Practice 3 notebooks
+## Practice 4 notebooks
 
-Each role works in its own notebook inside `notebooks/`, so data paths start with `../datos` and fold paths with `../folds`.
-R5 joins them into `notebooks/p3_cyber.ipynb` and `notebooks/p3_storage.ipynb`, the files that are handed in.
+Each role works in its own notebook inside `notebooks/` (`R1_p4.ipynb`, `R2_p4_cyber.ipynb`, `R3_p4_storage.ipynb`, `R4_p4.ipynb`), so data paths start with `../datos` and fold paths with `../folds`.
+R5 joins them into `notebooks/p4_cyber.ipynb` and `notebooks/p4_storage.ipynb`, the files that are handed in.
 Check a notebook with `python revisor_notebook.py notebooks/my_notebook.ipynb`. It only reports and never changes the notebook.
 
-The Practice 2 role drafts are no longer in `main`; they remain in the Git history (commit `69bd821`).
+The Practice 2 role drafts remain in the Git history (commit `69bd821`). The Practice 3 delivery and role notebooks are archived in `entrega_p3/`.
 
 Coordinate substantive model or interpretation changes with the relevant role. Integration
 may adjust paths and separate mixed-challenge cells while preserving the model configurations.
@@ -48,13 +49,13 @@ remote state and merge `origin/main` into your branch. Preserve uncommitted chan
 before switching branches or resolving conflicts. Another team member reviews the
 pull request before it is merged into `main`.
 
-| Branch | P2 role |
-|---|---|
-| `r1-datos` | R1 - Data and preprocessing |
-| `r2-cyber` | R2 - Classification |
-| `r3-storage` | R3 - Regression |
-| `r4-evaluacion` | R4 - Evaluation and validation |
-| `r5-informe` | R5 - Reporting and reproducibility |
+| Branch | Role | P4 owner |
+|---|---|---|
+| `r1-datos` | R1 - Data and preprocessing | Fernando |
+| `r2-cyber` | R2 - Classification | Marina |
+| `r3-storage` | R3 - Regression | Diana |
+| `r4-evaluacion` | R4 - Evaluation and validation | Francisco |
+| `r5-informe` | R5 - Reporting and reproducibility | Claudia |
 
 Draft outputs may be cleared to reduce merge conflicts. This does not apply to the
 two final delivery notebooks: restart their kernels, execute all cells, and save outputs.
