@@ -25,7 +25,7 @@ Commands described as running from `Proyecto/` must run from the repository root
 
 ## Practice 4 notebooks
 
-Each role works in its own notebook inside `notebooks/` (`R1_p4.ipynb`, `R2_p4_cyber.ipynb`, `R3_p4_storage.ipynb`, `R4_p4.ipynb`), so data paths start with `../datos` and fold paths with `../folds`.
+Each role works in its own notebook inside `notebooks/` (`R1_p4.ipynb`, `R2_p4_cyber.ipynb`, `R3_p4_storage.ipynb`, `R4_p4.ipynb`); each template is on its role branch. Data paths start with `../datos` and fold paths with `../folds`.
 R5 joins them into `notebooks/p4_cyber.ipynb` and `notebooks/p4_storage.ipynb`, the files that are handed in.
 Check a notebook with `python revisor_notebook.py notebooks/my_notebook.ipynb`. It only reports and never changes the notebook.
 
