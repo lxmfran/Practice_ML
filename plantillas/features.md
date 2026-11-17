@@ -138,3 +138,46 @@ they do not replace or rewrite the P2 entries.
   comparisons, not isolated estimator-family comparisons. The `primary` route
   identifies the unchanged predictive-information basis; it does not establish
   that the representations are identical.
+
+
+## Practice 4 update - 2026-11-17
+
+The predictive-information basis is unchanged: the eleven cyber source predictors
+and the nine storage source predictors registered in P2 are retained. No derived
+predictive feature or extension route is introduced. P4 only changes the
+representation, because the model is now a decision tree: the numeric predictors
+are not scaled and the one-hot encoding keeps every level. The entries below
+record this change and do not replace or rewrite the P2 or P3 entries.
+
+| Date | Milestone | Challenge | Feature | Definition | Motivation | Kind | Route |
+|---|---|---|---|---|---|---|---|
+| 2026-11-17 | P4 | cyber | Full one-hot encoding of `proto`, `service`, `conn_state` | `OneHotEncoder(handle_unknown="ignore", sparse_output=False)`, with no level dropped; vocabulary fitted only on the training portion of each canonical fold | A tree needs no reference level, and removing one would hide that level from the tree's questions | representation transformation | primary |
+| 2026-11-17 | P4 | cyber | Numeric predictors left unscaled, without `log1p` | The eight numeric predictors (`duration`, `src_bytes`, `dst_bytes`, `missed_bytes`, `src_pkts`, `src_ip_bytes`, `dst_pkts`, `dst_ip_bytes`) pass through unchanged (`"passthrough"`); the P2 and P3 `log1p` and `StandardScaler` are not applied | A tree tests `x <= threshold`; an increasing transformation moves the threshold but not the rows on each side, and unscaled values give thresholds in the original units | representation transformation | primary |
+| 2026-11-17 | P4 | storage | Full one-hot encoding of `load_type`, `io_type`, `raid`, `device_type` | `OneHotEncoder(handle_unknown="ignore", sparse_output=False)`, with no level dropped; vocabulary fitted only on each training portion; `raid` remains a nominal scheme | Same reason as in cyber; the tree can ask about any single level, such as `device_type_hdd` | representation transformation | primary |
+| 2026-11-17 | P4 | storage | Numeric predictors left unscaled | `block_size`, `n_jobs`, `iodepth`, `read_fraction` and `n_disks` pass through unchanged; the P2 and P3 `StandardScaler` is not applied | Same reason as in cyber; thresholds are read in the original units | representation transformation | primary |
+| 2026-11-17 | P4 | storage | `z = log10(latency_ns)` | Retain the target representation frozen in P2.3; keep the original `latency_ns` separately and invert predictions with `10 ** z_hat` | Maintain the same modelling target across milestones; calculate physical-scale errors only after inverting predictions | representation transformation (target) | primary |
+
+### P4 implementation and interpretation notes
+
+- The representation is declared in `notebooks/R1_p4.ipynb` through `make_preprocessor()`,
+  one factory per challenge. It returns an unfitted `ColumnTransformer`; R2 and R3 must
+  put it inside each model's `Pipeline`, so that learned state comes only from the
+  training rows of each fold.
+- The P3 categorical encoding removed one reference level per predictor. P4 keeps every
+  level, so each P3 indicator column also exists in P4 with the same values, and P4 adds
+  the columns of the levels P3 dropped. The notebook checks this on every fold.
+- With `handle_unknown="ignore"`, an unseen level is encoded as zeros for its predictor.
+  In P3 this was also the encoding of the dropped reference level. In P4 no level is
+  dropped, so all zeros means "none of the known levels". The real `service=gssapi`
+  validation row in fold 3 exercises this policy; storage has no unseen level in any fold.
+- Cyber produces 33 transformed columns in folds 0, 1, 2 and 4, and 32 in fold 3, whose
+  training vocabulary excludes `gssapi`. Storage produces 17 in each fold. Use each
+  fitted preprocessor's feature names to read importances and rules.
+- `row_id`, `feature_group`, `config_group` and `fold_id` remain outside the estimator
+  inputs, as do the targets. `iops` is not reintroduced. No imputation is added because
+  both development tables have no missing values.
+- Because the P2, P3 and P4 representations differ, the tree is compared with the P2 and
+  P3 rows as a pipeline comparison, not as an isolated estimator-family comparison. The
+  `primary` route identifies the unchanged predictive-information basis; it does not
+  establish that the representations are identical. Scaling does not change which rows a
+  tree sends to each side of a threshold.
