@@ -91,3 +91,50 @@ You must do **exactly one** of these two things, and say which:
    **not** an isolated model-family comparison.
 
 Neither option is penalised. Silently doing neither is.
+
+
+## Practice 3 update - 2026-11-07
+
+The predictive-information basis is unchanged: the eleven cyber source predictors
+and the nine storage source predictors registered in P2 are retained. No derived
+predictive feature or extension route is introduced. The entries below record
+P3 representations and explicitly reaffirm the transformations retained from P2;
+they do not replace or rewrite the P2 entries.
+
+| Date | Milestone | Challenge | Feature | Definition | Motivation | Kind | Route |
+|---|---|---|---|---|---|---|---|
+| 2026-11-07 | P3 | cyber | Reference-coded one-hot encoding of `proto`, `service`, `conn_state` | `OneHotEncoder(drop=["tcp", "-", "SF"], handle_unknown="ignore", sparse_output=False)`, in that predictor order; vocabulary fitted only on the training portion of each canonical fold | Each reference is the most frequent development level and occurs in every fold's training portion; removing its indicator makes the other levels explicit contrasts with that reference in models with an intercept | representation transformation | primary |
+| 2026-11-07 | P3 | cyber | `log1p` on all eight numeric predictors | Retain the P2 elementwise representation `ln(1 + x)` for `duration`, `src_bytes`, `dst_bytes`, `missed_bytes`, `src_pkts`, `src_ip_bytes`, `dst_pkts`, `dst_ip_bytes`; no fitted parameters | Preserve the frozen P2 representation, allow zeros and compress the wide numeric ranges | representation transformation | primary |
+| 2026-11-07 | P3 | cyber | Standardisation after `log1p` | `StandardScaler` on all eight log-transformed numeric predictors, with means and scales fitted only on each training portion and reused unchanged on validation | Numeric coefficients share a standardised scale; a unit increase means one training standard deviation in the log-transformed predictor | representation transformation | primary |
+| 2026-11-07 | P3 | storage | Reference-coded one-hot encoding of `load_type`, `io_type`, `raid`, `device_type` | `OneHotEncoder(drop=["random", "write", "4+1", "nvme"], handle_unknown="ignore", sparse_output=False)`, in that predictor order; vocabulary fitted only on each training portion | Each reference is the most frequent development level and occurs in every training portion; indicators express level-versus-reference contrasts, with RAID schemes remaining nominal | representation transformation | primary |
+| 2026-11-07 | P3 | storage | Standardisation of all five numeric predictors | Retain `StandardScaler` on `block_size`, `n_jobs`, `iodepth`, `read_fraction`, `n_disks`, fitted only on each training portion; no predictor `log1p` is introduced | Numeric coefficients share a common scale and describe a one-training-standard-deviation increase in the original predictor | representation transformation | primary |
+| 2026-11-07 | P3 | storage | `z = log10(latency_ns)` | Retain the target representation frozen in P2.3; keep the original `latency_ns` separately and invert predictions with `10 ** z_hat` | Maintain the same modelling target across milestones; calculate physical-scale errors only after inverting predictions | representation transformation (target) | primary |
+
+### P3 implementation and interpretation notes
+
+- The reference levels are declared explicitly in `notebooks/R1_p3.ipynb` and
+  checked for presence in all five training portions. They are not selected by
+  model scores. The `service` label `-` is a recorded category, not a missing value.
+- With an indicator dropped, the all-zero encoding of an unknown level is also
+  the declared reference's encoding. The policy therefore treats an unseen
+  level as that predictor's reference. It does not assert that the two levels
+  have equivalent behaviour. The real `service=gssapi` validation row in fold 3
+  exercises this policy.
+- Cyber produces 30 transformed columns in folds 0, 1, 2 and 4, and 29 in fold 3,
+  whose training vocabulary excludes `gssapi`. Storage produces 13 in each fold.
+  Use each fitted preprocessor's feature names to interpret its coefficients.
+- The factory returns an unfitted `ColumnTransformer`. The R1 checks fit fresh
+  preprocessors on training rows only; R2/R3/R4 must put the transformer inside
+  each model's `Pipeline` for model evaluation. Canonical fold assignments are
+  read from the course CSV files, never rebuilt.
+- `row_id`, `feature_group`, `config_group` and `fold_id` remain outside the
+  estimator inputs, as do the targets. `iops` is not reintroduced. No imputation
+  is added because both development tables have no missing values.
+- Numeric coefficient magnitudes may be compared within the numeric group on
+  its declared common scale. Categorical coefficients describe contrasts with
+  their own references; do not rank them against numeric coefficients by magnitude.
+- The P3 categorical representation differs from P2's full one-hot encoding.
+  Comparisons with the existing P2 rows are therefore reported as pipeline
+  comparisons, not isolated estimator-family comparisons. The `primary` route
+  identifies the unchanged predictive-information basis; it does not establish
+  that the representations are identical.

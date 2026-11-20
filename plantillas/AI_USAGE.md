@@ -99,12 +99,62 @@ at the defence is not *whether* AI was used, but whether you understand what was
 
 ## Practice 3
 
+**Last updated:** 2026-11-09. **Status:** P3 declarations received for all five roles; final team review remains required.
+
+### R1 - Data and preprocessing
+
+**Member:** Marina García
+
 | Field | Entry |
 |---|---|
-| Tool or service | |
-| Purpose | |
-| Files / sections affected | |
-| How the output was checked | |
+| Tool or service | OpenAI ChatGPT (GPT-6) |
+| Purpose | Coding assistance, debugging, clarification of machine learning concepts, and support in interpreting results and improving data visualisations. |
+| Files / sections affected | R1 tasks in Practice 3: `notebooks/R1_p3.ipynb` and the Practice 3 update of `features.md`. |
+| How the output was checked | Running the code, reviewing outputs, checking results, and validating the implementation against the assignment requirements. |
+
+### R2 - Classification
+
+**Member:** Diana Luque
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude (Anthropic) |
+| Purpose | Check code and do various corrections on it, and help writing some of the code. |
+| Files / sections affected | `R2_p3_cyber.ipynb` (P3.1, P3.2 and the Challenge A part of P3.5), in different ways. Integrated into `notebooks/p3_cyber.ipynb`. |
+| How the output was checked | Compared every suggestion with the printed tables, recomputed questions, rewrote texts to keep them clear and organised and ran Restart & Run All to confirm the main results. |
+
+### R3 - Regression
+
+**Member:** Francisco Manuel Moya Sánchez
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude |
+| Purpose | Used as an assistant: explaining the assignment and its methods (linear regression on z = log10(latency), reference levels, Ridge and Lasso, rank and condition number, paired per-fold differences) and what each question asked; coding assistance for my sections (suggested code that I reviewed, commented and asked to simplify); help drafting the interpretations and the answers to the comparison questions, which I reviewed and edited; help integrating R1's and R4's shared cells; and help with Git/GitHub. |
+| Files / sections affected | `notebooks/R3_p3_storage.ipynb` (P3.3, P3.4 and the Challenge B part of P3.5) |
+| How the output was checked | I ran the whole notebook from beginning to end on the canonical folds and checked that the results did not change after each integration (R1's preprocessing, R4's fold cells). I passed it through `revisor_notebook.py` (0 errors) and went through the code and the interpretations cell by cell, commenting the code myself so that I can explain every step at the defence. |
+
+### R4 - Evaluation and validation
+
+**Member:** Claudia Martínez Fernández
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude (Anthropic), model Opus 5.5 |
+| Purpose | Reading the statement, the role guide and the Practice 2 feedback, planning the R4 tasks, explaining concepts, drafting the code, reviewing the R2 and R3 notebooks and the saved Practice 2 outputs, help with GitHub Desktop. |
+| Files / sections affected | `notebooks/R4_p3.ipynb` (all sections) and `comparativa.csv` (the two Practice 3 rows). |
+| How the output was checked | I ran the notebook top to bottom on the repository data without errors. The assertions pass: no group is shared between training and validation, every row is validated exactly once, and X holds only the source predictors. The folds and metric code reproduce the Practice 2 Dummy rows fold by fold, and the paired-difference function reproduces the Practice 2 KNN − Dummy differences. The copied values of the Practice 3 rows are checked in the notebook against their own mean and spread, and I compared them with the saved outputs of R2 and R3. I checked that comparativa.csv only gained two lines at the end and the lines from P2 remained the same. |
+
+### R5 - Reporting and reproducibility
+
+**Member:** Fernando Caceres
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude Code (Anthropic), model Claude Sonnet 5.5 |
+| Purpose | Reviewing the state of the team's branches and help with Git/GitHub, and running the two final notebooks from beginning to end in a clean environment. |
+| Files / sections affected | `notebooks/p3_cyber.ipynb` and `notebooks/p3_storage.ipynb` (execution and checks only: the analysis and interpretations are those of R1–R4). |
+| How the output was checked | Both notebooks were executed from beginning to end in a clean Python 3.12 environment with the versions of `requirements.txt`, without errors and with `PROJECT_RANDOM_STATE = 2627` in the first cell. The notebooks passed `revisor_notebook.py`, and the numbers in the texts were compared with the saved outputs and with `comparativa.csv`. |
 
 ## Practice 4
 

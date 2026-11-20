@@ -1,6 +1,6 @@
 # `roles.md` — the five-phase rotation
 
-**Team:** Team 1 · **Current milestone:** P2 · **Updated:** 2026-10-25
+**Team:** Team 1 · **Current milestone:** P3 · **Updated:** 2026-11-09
 
 Submit this file with **every** milestone, with the current phase's row marked.
 
@@ -53,10 +53,10 @@ arithmetic.
 
 | Field | Value |
 |---|---|
-| Milestone | **P2** |
-| R1 | Diana Luque |
-| R2 | Francisco Moya |
-| R3 | Claudia Martínez |
-| R4 | Fernando Caceres |
-| R5 | Marina García |
+| Milestone | **P3** |
+| R1 | Marina García |
+| R2 | Diana Luque |
+| R3 | Francisco Moya |
+| R4 | Claudia Martínez |
+| R5 | Fernando Caceres |
 | Anything the team reallocated, and why | No change to the supplied role allocation has been reported. R5 integrates the role contributions into the two final challenge notebooks. |
