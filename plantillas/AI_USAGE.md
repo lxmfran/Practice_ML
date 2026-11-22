@@ -158,12 +158,62 @@ at the defence is not *whether* AI was used, but whether you understand what was
 
 ## Practice 4
 
+**Last updated:** 2026-11-22.
+
+### R1 - Data and representation
+
+**Member:** Fernando Caceres
+
 | Field | Entry |
 |---|---|
-| Tool or service | |
-| Purpose | |
-| Files / sections affected | |
-| How the output was checked | |
+| Tool or service | Claude (Anthropic), model Sonnet 5.5 |
+| Purpose | Planning the R1 tasks. The AI drafted the initial code cells and Markdown explanations of `notebooks/R1_p4.ipynb`, and the Practice 4 entry of `features.md`. The decision to drop `log1p` and scaling and to keep every one-hot level comes from the team. |
+| Files / sections affected | `notebooks/R1_p4.ipynb` (Challenge A and Challenge B: data, representation decisions, correspondence with P3, preprocessing block and checks) and `plantillas/features.md` (the Practice 4 entry only). |
+| How the output was checked | The notebook runs top to bottom without errors. The assertions pass in every canonical fold: the encoder is fitted on training rows only, no level is dropped, numeric columns keep their original values, and unseen levels give zeros (`service=gssapi` in fold 3). Each Practice 3 indicator column equals the Practice 4 column of the same level. The output has 33 columns in cyber (32 in fold 3) and 17 in storage, as in the role guide. Every number in a Markdown cell appears in a printed output. The earlier entries of `features.md` were not changed. |
+
+### R2 - Classification
+
+**Member:** Marina García
+
+| Field | Entry |
+|---|---|
+| Tool or service | ChatGPT Sol 6.2 and Codex |
+| Purpose | ChatGPT was used to explain and clarify the code across the sections assigned to R2. Codex helped write and revise parts of the code and check for errors or inconsistencies. |
+| Files / sections affected | `notebooks/R2_p4_cyber.ipynb` (P4.1, P4.2, the importances of P4.4 and the Challenge A part of P4.5) |
+| How the output was checked | I ran the notebook from beginning to end on the canonical folds without errors. The assertions check that refitting the selected configuration on each fold reproduces the grid-search score and that every row is validated exactly once. I reviewed the code and the interpretations myself and compared the numbers in the text with the printed outputs. |
+
+### R3 - Regression
+
+**Member:** Diana Luque
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude (Anthropic) |
+| Purpose | Checking the code and making corrections to it, and helping to write some of the code. |
+| Files / sections affected | `notebooks/R3_p4_storage.ipynb` (P4.3, the rules of P4.4 and the Challenge B part of P4.5) |
+| How the output was checked | Compared every suggestion with the printed tables, recomputed the answers to the questions, rewrote the texts to keep them clear and organised, and ran Restart & Run All to confirm the main results. |
+
+### R4 - Evaluation and validation
+
+**Member:** Francisco Manuel Moya Sánchez
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude Code (Anthropic), model Opus 5.5 |
+| Purpose | Used as an assistant: reading the statement and planning the R4 tasks; explaining the concepts (canonical folds passed as `cv=folds`, the grouping invariant, paired per-fold differences, pipeline versus family comparisons); hints while I wrote the imports, the fold list, the group check and the metric functions myself; drafting the remaining cells (row-order checks, storage pieces, the tree comparisons, the two P4 rows of `comparativa.csv`) and the Markdown readings and penalty table, which I reviewed; reviewing the R2 and R3 notebooks; help with Git/GitHub (Practice 4 branches and role templates). |
+| Files / sections affected | `notebooks/R4_p4.ipynb` (all sections) and `comparativa.csv` (the two Practice 4 rows). |
+| How the output was checked | I ran the notebook top to bottom on the repository data, with R1's data cells copied unchanged, without errors. The assertions pass: the fold and group files have the same row order as `dev`, and no group is shared between training and validation. The method was checked by reproducing the Practice 3 − Practice 2 differences already reported (cyber −0.1074, storage −0.0181). The five scores of the tree are the ones printed in R2's and R3's notebooks. I checked that `comparativa.csv` only gained two lines at the end and that the P2 and P3 lines remained the same, and I checked the R2 and R3 notebooks against the list of automatic penalties. |
+
+### R5 - Reporting and reproducibility
+
+**Member:** Claudia Martínez Fernández
+
+| Field | Entry |
+|---|---|
+| Tool or service | Claude (Anthropic), model Opus 5.5 |
+| Purpose | Reading the statement summary, the role guide and the Practice 3 feedback, reviewing the state of the team's branches and help with GitHub, assembling the two final notebooks from the role notebooks without changing their code or interpretations. |
+| Files / sections affected | `notebooks/p4_cyber.ipynb` and `notebooks/p4_storage.ipynb` (assembly and execution only: the analysis and interpretations are those of R1–R4), `plantillas/roles.md` and `plantillas/AI_USAGE.md`. |
+| How the output was checked | I ran both notebooks from beginning to end in a clean copy of the repository, without errors and with `PROJECT_RANDOM_STATE = 2627` printed in the first cell. The results and the written explanations were checked against the printed outputs, and the figures are visible in the saved notebooks. Each team member is responsible for reviewing and understanding the submitted work. |
 
 ## Practice 5
 
